@@ -10,7 +10,7 @@ namespace Hospitality.Patches
 		/// <summary>
 		/// So guests don't path outside of their area
 		/// </summary>
-		[HarmonyPatch(typeof(PathFinder), nameof(PathFinder.GetAllowedArea))]
+		[HarmonyPatch(typeof(PathUtility), nameof(PathUtility.GetAllowedArea))]
 		public class GetAllowedArea
 		{
 			[HarmonyPrefix]

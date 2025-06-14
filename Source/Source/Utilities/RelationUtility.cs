@@ -30,7 +30,7 @@ internal static class RelationUtility
 
     private static void UpdateInfo(RelationInfo info, Pawn guest)
     {
-        var relations = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction.Where(p => p.relations != null).SelectMany(p => GetRelations(guest, p)).ToArray();
+        var relations = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction.Where(p => p.relations != null).SelectMany(p => GetRelations(guest, p)).ToArray();
         info.hasRelationship = relations.Length > 0;
         info.lastUpdateTick = GenTicks.TicksGame;
         var sb = new StringBuilder();
