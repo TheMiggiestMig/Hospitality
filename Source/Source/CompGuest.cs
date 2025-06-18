@@ -154,9 +154,9 @@ public class CompGuest : ThingComp
         if (clearLord) lord = null;
     }
 
-    public override void PostDeSpawn(Map map)
+    public override void PostDeSpawn(Map map, DestroyMode mode)
     {
-        base.PostDeSpawn(map);
+        base.PostDeSpawn(map, mode);
         map.GetMapComponent()?.PresentGuests.Remove(Pawn);
     }
 

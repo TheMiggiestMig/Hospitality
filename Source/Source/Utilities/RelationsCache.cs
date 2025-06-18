@@ -54,7 +54,7 @@ namespace Hospitality.Utilities
 		
 		private static IEnumerable<Pawn> GetNearbyColonists(Map mapHeld)
 		{
-			return PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists.Where(p => IsNearby(mapHeld, p));
+			return PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(p => IsNearby(mapHeld, p));
 		}
 
 		private static bool IsNearby(Map mapHeld, Pawn p)

@@ -45,7 +45,7 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         return Mathf.Lerp(-20, 20, Mathf.InverseLerp(-100, 100, current));
     }
 
-    public override bool FactionCanBeGroupSource(Faction f, Map map, bool desperate = false)
+    public override bool FactionCanBeGroupSource(Faction f, IncidentParms parms, bool desperate = false)
     {
         return !f.IsPlayer && !f.defeated && !f.def.hidden && !f.HostileTo(Faction.OfPlayer)
                && f.def.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(x => x.kindDef == PawnGroupKindDef);

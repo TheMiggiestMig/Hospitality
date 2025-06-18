@@ -32,7 +32,7 @@ namespace Hospitality.Patches
                     return false;
                 }
                 // BASE
-                if (!InteractionUtility.CanInitiateRandomInteraction(___pawn))
+                if (!SocialInteractionUtility.CanInitiateRandomInteraction(___pawn))
                 {
                     __result = false;
                     return false;
@@ -44,7 +44,7 @@ namespace Hospitality.Patches
                 List<InteractionDef> allDefsListForReading = DefDatabase<InteractionDef>.AllDefsListForReading;
                 foreach (var p in ___workingList)
                 {
-                    if (p != ___pawn && CanInteractNowWith(___pawn, p) && InteractionUtility.CanReceiveRandomInteraction(p)
+                    if (p != ___pawn && CanInteractNowWith(___pawn, p) && SocialInteractionUtility.CanReceiveRandomInteraction(p)
                         && !___pawn.HostileTo(p))
                     {
                         var p1 = p;
@@ -78,11 +78,11 @@ namespace Hospitality.Patches
                 {
                     return false;
                 }
-                if (!InteractionUtility.IsGoodPositionForInteraction(pawn, recipient))
+                if (!SocialInteractionUtility.IsGoodPositionForInteraction(pawn, recipient))
                 {
                     return false;
                 }
-                if (!InteractionUtility.CanInitiateInteraction(pawn, interactionDef) || !InteractionUtility.CanReceiveInteraction(recipient, interactionDef))
+                if (!SocialInteractionUtility.CanInitiateInteraction(pawn, interactionDef) || !SocialInteractionUtility.CanReceiveInteraction(recipient, interactionDef))
                 {
                     return false;
                 }

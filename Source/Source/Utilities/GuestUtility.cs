@@ -248,7 +248,7 @@ public static class GuestUtility
 
     public static bool CanTalkTo(this Pawn talker, Pawn talkee)
     {
-        return talker.MapHeld == talkee.MapHeld && InteractionUtility.CanInitiateInteraction(talker) && InteractionUtility.CanReceiveInteraction(talkee) && CanSee(talker, talkee);
+        return talker.MapHeld == talkee.MapHeld && SocialInteractionUtility.CanInitiateInteraction(talker) && SocialInteractionUtility.CanReceiveInteraction(talkee) && CanSee(talker, talkee);
     }
 
     private static bool CanSee(Pawn talker, Pawn talkee)
@@ -635,8 +635,8 @@ public static class GuestUtility
         //if (guest.relations.OpinionOf(pawn) >= 100) return false;
         //if (guest.RelativeTrust() < 50) return false;
         if (guest.relations.OpinionOf(pawn) <= -10) return false;
-        if (!InteractionUtility.CanInitiateInteraction(pawn)) return false;
-        if (!InteractionUtility.CanReceiveInteraction(guest)) return false;
+        if (!SocialInteractionUtility.CanInitiateInteraction(pawn)) return false;
+        if (!SocialInteractionUtility.CanReceiveInteraction(guest)) return false;
         if (!guest.CanCasuallyInteractNow()) return false;
         if (!JobDriver_GuestBase.JobIsSuspendable(guest)) return false;
         if (!pawn.HasReserved(guest) && !pawn.CanReserveAndReach(guest, PathEndMode.OnCell, pawn.NormalMaxDanger())) return false;
@@ -653,8 +653,8 @@ public static class GuestUtility
         if (guest.relations.OpinionOf(pawn) >= 100) return false;
         if (guest.InMentalState) return false;
         if (!guest.IsInGuestZone(guest)) return false;
-        if (!InteractionUtility.CanInitiateInteraction(pawn)) return false;
-        if (!InteractionUtility.CanReceiveInteraction(guest)) return false;
+        if (!SocialInteractionUtility.CanInitiateInteraction(pawn)) return false;
+        if (!SocialInteractionUtility.CanReceiveInteraction(guest)) return false;
         if (!guest.CanCasuallyInteractNow()) return false;
         if (!JobDriver_GuestBase.JobIsSuspendable(guest)) return false;
         if (!pawn.HasReserved(guest) && !pawn.CanReserveAndReach(guest, PathEndMode.OnCell, pawn.NormalMaxDanger())) return false;
