@@ -2,7 +2,7 @@
 name: Bug report
 about: Report an issue with one of my mods
 title: 'Mod name: Name of the problem'
-labels: bug
+labels: bug, enhancement
 assignees: ''
 
 ---
@@ -12,6 +12,9 @@ This mod is no longer actively maintained. However, if you're lucky, generous so
 
 **Describe the bug**
 What happened?
+
+**RimWorld version**
+Please state the version you're using
 
 **To Reproduce**
 Steps to reproduce the behavior:
