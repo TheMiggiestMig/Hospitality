@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest>
-  <identifier>Hospitality</identifier>
-  <version>1.5.0.8</version>
+  <identifier>Hospitality (Continued)</identifier>
+  <version>1.0.2.0</version>
   <dependencies>
 	<li>brrainz.harmony</li>
   </dependencies>
@@ -19,6 +19,6 @@
   <!-- </suggests> -->
   <showCrossPromotions>true</showCrossPromotions>
   
-  <manifestUri>https://raw.githubusercontent.com/OrionFive/Hospitality/develop/About/Manifest.xml</manifestUri>
-  <downloadUri>https://github.com/OrionFive/Hospitality/tags</downloadUri>
+  <manifestUri></manifestUri>
+  <downloadUri></downloadUri>
 </Manifest>
