@@ -1,20 +1,4 @@
-# Orion's Mods
-This repository hosts the RimWorld mod *Hospitality*. I also collect feature requests and issues for my other mods.
-
-## Want to download the latest version?
-Find them [here](https://github.com/OrionFive/Hospitality/releases).
-
-## Got a problem, bug, or feature request? 
-Post it [here](https://github.com/OrionFive/Hospitality/issues).
-
-## Helping out
-I'm not actively adding features or fixes anymore (same for my other mods). After more than ten years of managing mods I've burnt out on RimWorld and I don't think I'll recover.
-So if you see bugs or enhancements you care about, feel free to create a solution. I review all pull requests.
-
-## Become a patron! 
-Want to support the development of Hospitality and my other mods? 
-Want to vote on the next feature? 
-[Become my patron!](https://www.patreon.com/orionmods)
+Hospitality (Continued)
 
 
 # License
