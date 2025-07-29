@@ -9,14 +9,13 @@ namespace Hospitality.Patches
     /// </summary>
     public class Pawn_MindState_Patch
     {
-        [HarmonyPatch(typeof(Pawn_MindState), nameof(Pawn_MindState.Reset))]
-        public class TryStartMentalState
+        [HarmonyPatch(typeof(Pawn_MindState), "Reset", new[] { typeof(bool), typeof(bool) })]
+        public static class Pawn_MindState_Reset_Patch
         {
             [HarmonyPostfix]
-            public static void Postfix(ref Pawn_MindState __instance)
+            public static void Postfix(Pawn_MindState __instance)
             {
                 if (!__instance.pawn.IsGuest()) return;
-
                 __instance.pawn.ConvertToTrader(false);
             }
         }

@@ -45,12 +45,30 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         return Mathf.Lerp(-20, 20, Mathf.InverseLerp(-100, 100, current));
     }
 
+    //public override bool FactionCanBeGroupSource(Faction f, IncidentParms parms, bool desperate = false)
+    //{
+    //   return !f.IsPlayer && !f.defeated && !f.def.hidden && !f.HostileTo(Faction.OfPlayer)
+    //          && f.def.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(x => x.kindDef == PawnGroupKindDef);
+    //}
+
     public override bool FactionCanBeGroupSource(Faction f, IncidentParms parms, bool desperate = false)
     {
-        return !f.IsPlayer && !f.defeated && !f.def.hidden && !f.HostileTo(Faction.OfPlayer)
-               && f.def.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(x => x.kindDef == PawnGroupKindDef);
+        Map map = parms?.target as Map ?? Find.CurrentMap;
+
+        if ((map?.Biome?.defName == "Space" || map?.Biome?.defName == "OuterSpaceBiome") && f.def.techLevel <= TechLevel.Medieval)
+        {
+            return false;
+        }
+
+        return !f.IsPlayer
+            && !f.defeated
+            && !f.def.hidden
+            && !f.HostileTo(Faction.OfPlayer)
+            && f.def.pawnGroupMakers != null
+            && f.def.pawnGroupMakers.Any(x => x.kindDef == PawnGroupKindDef);
     }
 
+    
     private static bool CheckCanCome(Map map, Faction faction, out TaggedString reasons)
     {
         var fallout = map.GameConditionManager.ConditionIsActive(GameConditionDefOf.ToxicFallout);
@@ -60,6 +78,8 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         var temp = faction.def.allowedArrivalTemperatureRange.Includes(map.mapTemperature.OutdoorTemp) && faction.def.allowedArrivalTemperatureRange.Includes(map.mapTemperature.SeasonalTemp);
         var beds = map.listerBuildings.AllBuildingsColonistOfClass<Building_GuestBed>().Any();
         var manhunters = potentiallyDangerous.Where(p => p.InAggroMentalState);
+        bool spaceBiome = map.Biome.defName == "Space";
+        bool spaceSOS2Biome = map.Biome.defName == "OuterSpaceBiome";
 
         reasons = null;
 
@@ -68,8 +88,8 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
         var reasonList = new List<string>(); // string, so we can check for Distinct later
         if (!beds) reasonList.Add("- " + "VisitorsArrivedReasonNoBeds".Translate());
         if (fallout) reasonList.Add("- " + GameConditionDefOf.ToxicFallout.LabelCap);
-        if (winter) reasonList.Add("- " + GameConditionDefOf.VolcanicWinter.LabelCap);
-        if (!temp) reasonList.Add("- " + "Temperature".Translate());
+        if (winter) reasonList.Add("- " + GameConditionDefOf.VolcanicWinter.LabelCap);       
+        if (!temp && (!spaceBiome || !spaceSOS2Biome)) reasonList.Add("- " + "Temperature".Translate());
 
         foreach (var f in hostileFactions)
         {
@@ -579,6 +599,21 @@ public class IncidentWorker_VisitorGroup : IncidentWorker_NeutralGroup
 
                 value = maxValue - totalValue;
             }
+
+            //check for Space biome and gear them up if so
+            //put a check here so both Spaceports and Hospitality don't try to do it?
+            bool spaceBiome = visitor.Map.Biome.defName == "Space";
+            if (spaceBiome)
+            {
+                if (visitor != null && visitor.apparel != null)
+                {
+                    Apparel helmet = (Apparel)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("Apparel_VacsuitHelmet"));
+                    Apparel suit = (Apparel)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("Apparel_Vacsuit"));
+                    visitor.apparel.Wear(helmet, false, true);
+                    visitor.apparel.Wear(suit, false, true);
+                }
+            }
+
         }
     }
 

@@ -288,6 +288,7 @@ public static class GuestUtility
 
     public static void Arrive(this Pawn pawn)
     {
+
         try
         {
             pawn.PocketHeadgear();

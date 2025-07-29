@@ -30,6 +30,9 @@ public static class ItemUtility
         foreach (var apparel in headgear)
         {
             if (apparel == null) continue;
+            // Don't drop space headgear
+            if (apparel.def.defName == "Apparel_SpaceSuitHelmet") continue;
+            if (apparel.def.defName == "Apparel_VacsuitHelmet") continue;
             // Don't drop headgear that is required by title
             if (IsRequiredByRoyalty(pawn, apparel.def)) continue;
 

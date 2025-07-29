@@ -12,6 +12,7 @@
     <baseChance>0</baseChance>
     <pointsScaleable>true</pointsScaleable>
     <minRefireDays>1</minRefireDays>
+	<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
   </IncidentDef>
 
   <IncidentDef>
@@ -25,6 +26,7 @@
     <baseChance>0</baseChance>
     <pointsScaleable>true</pointsScaleable>
     <minRefireDays>1</minRefireDays>
+	<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
   </IncidentDef>
   
   <IncidentDef>
@@ -38,6 +40,7 @@
     <baseChance>0</baseChance>
     <pointsScaleable>true</pointsScaleable>
     <minRefireDays>1</minRefireDays>
+	<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
   </IncidentDef>
   
   <IncidentDef>
@@ -51,6 +54,7 @@
     <baseChance>1</baseChance>
 	<populationEffect>IncreaseEasy</populationEffect>
 	<letterDef>HappyGuestJoins</letterDef>
+	<canOccurOnAllPlanetLayers>true</canOccurOnAllPlanetLayers>
   </IncidentDef>
   
 </Defs>
