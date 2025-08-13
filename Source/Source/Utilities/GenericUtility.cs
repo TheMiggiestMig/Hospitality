@@ -153,7 +153,7 @@ internal static class GenericUtility
         foreach (var faction in Find.FactionManager.AllFactionsVisible.Where(f => !f.IsPlayer && !f.defeated && !f.HostileTo(Faction.OfPlayer)).OrderBy(f => GetTravelDays(f, map)))
         {
             amount--;
-            Log.Message(faction.GetCallLabel() + " are coming after " + days + " days.");
+            //Log.Message(faction.GetCallLabel() + " are coming after " + days + " days.");
             PlanNewVisit(map, days, faction);
             days += Rand.Range(15f, 25f);
             if (amount <= 0) break;

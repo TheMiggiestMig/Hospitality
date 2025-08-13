@@ -13,7 +13,7 @@ namespace Hospitality;
 
 public class Building_GuestBed : Building_Bed
 {
-    internal const int FeeStep = 10;
+    internal const int FeeStep = 5;
     private static readonly Color sheetColorForGuests = new(89 / 255f, 55 / 255f, 121 / 255f);
 
     public int previousRoyaltyUpdate;
