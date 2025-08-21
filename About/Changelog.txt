@@ -7,3 +7,5 @@
 1.0.3 - 7/14/2025 - initial Odyssey compatibility
 
 1.0.4 - 8/5/2025 - added some null checking, bed interval price now 5 (was 10), removed some unneeded logging
+
+1.0.5 - 8/20/2025 - performance fix to a patch, thanks Zera!

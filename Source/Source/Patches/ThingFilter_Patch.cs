@@ -5,34 +5,22 @@ using Verse;
 namespace Hospitality.Patches;
 
 /// <summary>
-///     Make filters for beds also accept guest beds
+///     Make filters for beds also accept guest beds - DefModExtension version
 /// </summary>
 public class ThingFilter_Patch
 {
     [HarmonyPatch(typeof(ThingFilter), nameof(ThingFilter.Allows), typeof(ThingDef))]
-    public class Allows
+    public static class ThingFilter_Allows_Patch
     {
-        private static Dictionary<string, ThingDef> bedNameToThing = new();
-
         [HarmonyPrefix]
-        public static bool Prefix(ref ThingDef def)
+        public static void Prefix(ref ThingDef def)
         {
-            // Is from a guest bed?
-            if (def?.defName == null || def.thingClass != typeof(Building_GuestBed)) return true;
-
-
-            if (!bedNameToThing.TryGetValue(def.defName, out var bedDef))
+            var ext = def?.GetModExtension<GuestBedExtension>();
+            if (ext?.originalBed != null)
             {
-                bedDef = DefDatabase<ThingDef>.GetNamed(def.defName.Substring(0, def.defName.Length - 5)); // remove "Guest" from name
-                bedNameToThing.Add(def.defName, bedDef); // we don't care if its null, just trying to avoid the string manipulation and DefDatabase lookups
+                def = ext.originalBed;
             }
-
-            // Use def of original bed instead
-            if (bedDef != null)
-                def = bedDef;
-
-            // Business as usual
-            return true;
         }
     }
+
 }

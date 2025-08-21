@@ -91,6 +91,10 @@ public static class Hospitality_SpecialInjector
                 guestBedDef.modContentPack = GuestUtility.relaxDef.modContentPack;
                 guestBedDef.drawerType = DrawerType.MapMeshAndRealTime;
 
+                // NEW: attach extension
+                guestBedDef.modExtensions ??= new List<DefModExtension>();
+                guestBedDef.modExtensions.Add(new GuestBedExtension { originalBed = bedDef });
+
                 var takenHashes = ShortHashGiver.takenHashesPerDeftype[typeof(ThingDef)];
                 typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static)!.Invoke(null, [guestBedDef, typeof(ThingDef), takenHashes]);
 
