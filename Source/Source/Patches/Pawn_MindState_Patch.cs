@@ -9,7 +9,7 @@ namespace Hospitality.Patches
     /// </summary>
     public class Pawn_MindState_Patch
     {
-        [HarmonyPatch(typeof(Pawn_MindState), "Reset", new[] { typeof(bool), typeof(bool) })]
+        [HarmonyPatch(typeof(Pawn_MindState), "Reset", new[] { typeof(bool), typeof(bool), typeof(bool) })]
         public static class Pawn_MindState_Reset_Patch
         {
             [HarmonyPostfix]
