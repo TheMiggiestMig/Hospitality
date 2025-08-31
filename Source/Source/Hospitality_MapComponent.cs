@@ -63,13 +63,22 @@ public class Hospitality_MapComponent : MapComponent
     {
         PresentLords.Clear();
         // We look for the job of our lord to determine whether it is a guest group or not.
-        PresentLords.AddRange(map.lordManager.lords.Where(l => l.LordJob is LordJob_VisitColony visit && !visit.leaving));
-        //Log.Message($"Present lords: {PresentLords.Select(l => $"{l?.faction?.Name} ({l?.ownedPawns?.Count})").ToCommaList()}");
+        // Now with null checking
+        if (map?.lordManager?.lords != null)
+        {
+            PresentLords.AddRange(map.lordManager.lords
+                .Where(l => l.LordJob is LordJob_VisitColony visit && !visit.leaving));
+        }
+
         MainTabWindowUtility.NotifyAllPawnTables_PawnsChanged();
 
         PresentGuests.Clear();
-        PresentGuests.AddRange(PresentLords.SelectMany(l => l.ownedPawns));
+        if (PresentLords.Count > 0)
+            PresentGuests.AddRange(PresentLords.SelectMany(l => l.ownedPawns ?? Enumerable.Empty<Pawn>()));
     }
+
+   
+
 
     public void OnLordSpawned(Lord lord)
     {
